@@ -23,7 +23,7 @@
     }
   ],
   "vars": {
-    "GAME_NAME": "VẠN NGHỀ",
-    "GAME_VERSION": "3.0.0"
+    "GAME_NAME": "Game",
+    "GAME_VERSION": "4.0.0"
   }
 }

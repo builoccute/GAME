@@ -10,7 +10,7 @@ export default {
 
     try {
       if (url.pathname === '/api/health') {
-        return json({ ok: true, game: env.GAME_NAME || 'VẠN NGHỀ', version: env.GAME_VERSION || '2.0.0' });
+        return json({ ok: true, game: env.GAME_NAME || 'Game', version: env.GAME_VERSION || '4.0.0' });
       }
 
       if (url.pathname === '/api/save' && request.method === 'GET') {

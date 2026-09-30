@@ -1,15 +1,12 @@
-# VẠN NGHỀ V3
+# GAME V4
 
-Bản dựng lại theo hướng game-first: nhân vật hoạt hình vector, không gian nghề nghiệp trực quan, NPC procedural, 60 nghề (50 đại chúng + 10 cộng đồng), thao tác trực tiếp và giao diện ổn định không camera shake.
+Web game mô phỏng 60 nghề: 50 nghề đại chúng + 10 nghề hoạt động cộng đồng.
 
-## Cloudflare
-- Worker: `game`
-- D1 binding: `DB` → database `game`
-- D1 ID: `5d0864fc-4a20-447e-9b6a-4d27667e66e9`
-- R2 binding: `ASSETS` → bucket `game`
-- Root directory trên Cloudflare: `CHAY-SHOW`
+- Website name: GAME
+- Root directory: `CHAY-SHOW`
+- Build: `npm run build`
+- Deploy: `npx --yes wrangler@4.144.0 deploy`
+- D1 binding: `DB` -> database `game`
+- R2 binding: `ASSETS` -> bucket `game`
 
-## Build / deploy
-- Build command: `npm run build`
-- Deploy command: `npx --yes wrangler@4.144.0 deploy`
-- Migration khi cần: `npx --yes wrangler@4.144.0 d1 migrations apply DB --remote`
+V4 sắp nghề theo lĩnh vực, có tìm kiếm, featured games, nhân vật hoạt hình trong thẻ nghề và giữ gameplay scene riêng.

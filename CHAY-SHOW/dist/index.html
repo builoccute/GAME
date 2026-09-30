@@ -4,52 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#101728" />
-  <meta name="description" content="Vạn Nghề — thế giới mô phỏng nghề nghiệp với 60 nghề và NPC procedural." />
-  <title>Vạn Nghề</title>
+  <meta name="description" content="Game — thế giới mô phỏng 60 nghề với nhân vật hoạt hình và NPC procedural." />
+  <title>Game</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div id="app">
-    <section id="landing" class="screen landing">
+    <section id="landing" class="screen landing game-landing">
       <div class="landing-sky"><i></i><i></i><i></i></div>
-      <div class="landing-city" aria-hidden="true">
-        <div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><div class="building b4"></div><div class="building b5"></div>
+      <div class="game-landing-world" aria-hidden="true">
+        <div class="landing-shop shop-a"><span>CAFE</span></div>
+        <div class="landing-shop shop-b"><span>STUDIO</span></div>
+        <div class="landing-shop shop-c"><span>HOTEL</span></div>
+        <div class="landing-shop shop-d"><span>WORK</span></div>
+        <div class="landing-road"></div>
       </div>
       <div class="landing-people" id="landingPeople"></div>
-      <div class="landing-card">
-        <div class="logo-mark"><span>V</span></div>
-        <p class="kicker">MỘT THÀNH PHỐ · 60 CUỘC ĐỜI</p>
-        <h1>VẠN <span>NGHỀ</span></h1>
-        <p class="lead">Bắt đầu tay trắng. Chọn việc bạn thích. Tự tay làm, kiếm tiền, mở khóa thành phố và gặp những con người không bao giờ lặp lại.</p>
-        <button id="enterCity" class="cta"><span>CHƠI NGAY</span><b>→</b></button>
-        <div class="landing-meta"><span>60 nghề</span><span>NPC không giới hạn</span><span>Không cần đăng nhập</span></div>
+      <div class="game-brand-card">
+        <div class="game-logo" aria-label="Game"><i></i><strong>GAME</strong></div>
+        <p class="kicker">60 NGHỀ · 60 CÁCH CHƠI · MỘT THẾ GIỚI</p>
+        <h1>Hôm nay<br><span>bạn muốn làm gì?</span></h1>
+        <p class="lead">Chọn một nghề, bước thẳng vào nơi làm việc và tự tay chơi. Không form quản trị. Không màn hình giả lập công việc.</p>
+        <button id="enterCity" class="cta game-cta"><span>VÀO GAME</span><b>→</b></button>
+        <div class="landing-meta"><span>50 nghề đại chúng</span><span>10 nghề cộng đồng</span><span>NPC sinh không giới hạn</span></div>
       </div>
-      <div class="scroll-hint">Kéo · chạm · chơi trực tiếp</div>
+      <div class="landing-corner-note"><b>GAME</b><span>Play your day.</span></div>
     </section>
 
-    <section id="city" class="screen city hidden">
-      <div class="city-world" id="cityWorld">
-        <div class="city-sky"></div>
-        <div class="city-ground"></div>
-        <div id="cityBuildings" class="city-buildings"></div>
-        <div id="cityPeople" class="city-people"></div>
-      </div>
-      <header class="topbar">
-        <button class="player-chip" id="profileBtn"><span id="miniAvatar"></span><span><small>NGƯỜI CHƠI</small><b>Người mới</b></span></button>
-        <div class="resource"><small>TIỀN</small><b id="money">120.000đ</b></div>
-        <div class="resource"><small>LEVEL</small><b id="level">1</b></div>
-        <div class="xp"><i id="xpFill"></i></div>
-        <div class="top-spacer"></div>
+    <section id="city" class="screen city game-hub hidden">
+      <div class="hub-atmosphere"><i></i><i></i><i></i></div>
+      <div id="cityPeople" class="hub-people"></div>
+      <header class="game-header">
+        <button class="header-brand" id="homeBtn"><span class="brand-g">G</span><b>GAME</b></button>
+        <nav class="header-nav"><button class="active">Nghề nghiệp</button><button id="missionsBtn">Nhiệm vụ</button><button id="phoneBtn">Điện thoại <em id="phoneDot"></em></button></nav>
+        <div class="header-space"></div>
+        <div class="resource compact"><small>TIỀN</small><b id="money">120.000đ</b></div>
+        <div class="level-chip"><small>LV</small><b id="level">1</b><span class="xp"><i id="xpFill"></i></span></div>
         <div class="daytime"><b id="clock">07:30</b><small id="day">NGÀY 1</small></div>
-        <button id="settingsBtn" class="round-btn" aria-label="Cài đặt">⋯</button>
+        <button class="player-chip compact-player" id="profileBtn"><span id="miniAvatar"></span></button>
+        <button id="settingsBtn" class="round-btn" aria-label="Cài đặt">•••</button>
       </header>
-      <div class="city-title"><small id="districtName">KHU KHỞI NGHIỆP</small><strong id="cityPrompt">Chọn một nơi để bắt đầu</strong></div>
-      <button id="jobsBtn" class="jobs-button"><span class="grid-icon"><i></i><i></i><i></i><i></i></span><b>60 NGHỀ</b></button>
-      <div class="city-bottom">
-        <button id="homeBtn" class="nav-pill active"><span class="home-icon"></span><b>Thành phố</b></button>
-        <button id="missionsBtn" class="nav-pill"><span class="star-icon"></span><b>Nhiệm vụ</b><em id="missionDot"></em></button>
-        <button id="phoneBtn" class="nav-pill"><span class="phone-icon"></span><b>Điện thoại</b><em id="phoneDot"></em></button>
-      </div>
+
+      <main class="game-library">
+        <section class="library-hero">
+          <div class="hero-copy">
+            <span class="eyebrow">CHỌN NGHỀ · VÀO LÀ CHƠI</span>
+            <h2>Chọn cuộc chơi<br><span>của bạn.</span></h2>
+            <p>60 nghề được sắp theo lĩnh vực. Mỗi nghề mở một không gian và cách thao tác riêng.</p>
+            <label class="game-search"><i></i><input id="careerSearch" type="search" placeholder="Tìm nghề: trà sữa, spa, logistics..." autocomplete="off"><kbd>/</kbd></label>
+          </div>
+          <div class="hero-featured" id="featuredCareers"></div>
+        </section>
+
+        <section class="library-body">
+          <div class="library-title-row"><div><small>THƯ VIỆN GAME</small><h3>60 nghề để khám phá</h3></div><div class="library-count"><b id="visibleCount">60</b><span>game</span></div></div>
+          <div id="categoryBar" class="category-bar"></div>
+          <div id="careerCatalog" class="career-catalog"></div>
+        </section>
+      </main>
+      <button id="jobsBtn" class="floating-all" aria-label="Tất cả nghề">60 <span>GAME</span></button>
       <div id="citySheet" class="sheet hidden"></div>
       <div id="toast" class="toast hidden"></div>
     </section>
