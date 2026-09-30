@@ -1,15 +1,12 @@
 {
   "name": "van-nghe-city-game",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 5173 -d src",
     "build": "node build.mjs",
-    "deploy": "npm run build && wrangler deploy",
-    "db:migrate": "wrangler d1 migrations apply DB --remote"
-  },
-  "devDependencies": {
-    "wrangler": "latest"
+    "deploy": "npm run build && npx --yes wrangler@4.144.0 deploy",
+    "db:migrate": "npx --yes wrangler@4.144.0 d1 migrations apply DB --remote"
   }
 }
