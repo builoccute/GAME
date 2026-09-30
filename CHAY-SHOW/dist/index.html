@@ -3,75 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#07131f" />
-  <meta name="description" content="VẠN NGHỀ — thành phố mô phỏng 60 nghề, NPC procedural không giới hạn." />
-  <title>VẠN NGHỀ</title>
+  <meta name="theme-color" content="#101728" />
+  <meta name="description" content="Vạn Nghề — thế giới mô phỏng nghề nghiệp với 60 nghề và NPC procedural." />
+  <title>Vạn Nghề</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div id="boot" class="boot">
-    <div class="boot-orb orb-a"></div><div class="boot-orb orb-b"></div>
-    <div class="boot-card">
-      <div class="brand-mark">V</div>
-      <p class="eyebrow">MỘT THÀNH PHỐ · VÔ SỐ CÂU CHUYỆN</p>
-      <h1>VẠN<br><span>NGHỀ</span></h1>
-      <p class="boot-copy">Bắt đầu tay trắng. Chọn nghề. Kiếm tiền. Mở khu phố. Gặp những con người không bao giờ lặp lại.</p>
-      <button id="playBtn" class="primary huge">VÀO THÀNH PHỐ <b>→</b></button>
-      <div class="boot-chips"><span>60 nghề</span><span>NPC procedural</span><span>Chơi ngay</span></div>
-    </div>
-    <div class="skyline" aria-hidden="true"></div>
-  </div>
-
-  <main id="game" class="game hidden">
-    <canvas id="world" aria-label="Bản đồ thành phố Vạn Nghề"></canvas>
-    <header class="hud glass">
-      <button class="avatar" id="profileBtn" title="Hồ sơ">🙂</button>
-      <div class="hud-stat money"><small>TIỀN</small><strong id="moneyText">0đ</strong></div>
-      <div class="hud-stat"><small>LEVEL</small><strong id="levelText">1</strong></div>
-      <div class="xp-wrap"><div id="xpBar"></div></div>
-      <div class="hud-stat desktop-only"><small>UY TÍN</small><strong id="repText">0</strong></div>
-      <div class="hud-spacer"></div>
-      <div class="clock"><span id="weatherIcon">☀️</span><b id="timeText">07:30</b><small id="dayText">NGÀY 1</small></div>
-      <button id="soundBtn" class="icon-btn" title="Âm thanh">🔊</button>
-    </header>
-
-    <section class="quest glass" id="questCard">
-      <span class="quest-icon">⚡</span><div><small>NHIỆM VỤ NHANH</small><b id="questText">Chơi một nghề bất kỳ</b></div>
-      <span id="questProgress">0/1</span>
+  <div id="app">
+    <section id="landing" class="screen landing">
+      <div class="landing-sky"><i></i><i></i><i></i></div>
+      <div class="landing-city" aria-hidden="true">
+        <div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><div class="building b4"></div><div class="building b5"></div>
+      </div>
+      <div class="landing-people" id="landingPeople"></div>
+      <div class="landing-card">
+        <div class="logo-mark"><span>V</span></div>
+        <p class="kicker">MỘT THÀNH PHỐ · 60 CUỘC ĐỜI</p>
+        <h1>VẠN <span>NGHỀ</span></h1>
+        <p class="lead">Bắt đầu tay trắng. Chọn việc bạn thích. Tự tay làm, kiếm tiền, mở khóa thành phố và gặp những con người không bao giờ lặp lại.</p>
+        <button id="enterCity" class="cta"><span>CHƠI NGAY</span><b>→</b></button>
+        <div class="landing-meta"><span>60 nghề</span><span>NPC không giới hạn</span><span>Không cần đăng nhập</span></div>
+      </div>
+      <div class="scroll-hint">Kéo · chạm · chơi trực tiếp</div>
     </section>
 
-    <div class="district-label" id="districtLabel"><small>KHU VỰC</small><b>Phố Khởi Nghiệp</b></div>
-    <div class="world-tip" id="worldTip">Kéo để khám phá · Cuộn để zoom · Chạm tòa nhà để chơi</div>
+    <section id="city" class="screen city hidden">
+      <div class="city-world" id="cityWorld">
+        <div class="city-sky"></div>
+        <div class="city-ground"></div>
+        <div id="cityBuildings" class="city-buildings"></div>
+        <div id="cityPeople" class="city-people"></div>
+      </div>
+      <header class="topbar">
+        <button class="player-chip" id="profileBtn"><span id="miniAvatar"></span><span><small>NGƯỜI CHƠI</small><b>Người mới</b></span></button>
+        <div class="resource"><small>TIỀN</small><b id="money">120.000đ</b></div>
+        <div class="resource"><small>LEVEL</small><b id="level">1</b></div>
+        <div class="xp"><i id="xpFill"></i></div>
+        <div class="top-spacer"></div>
+        <div class="daytime"><b id="clock">07:30</b><small id="day">NGÀY 1</small></div>
+        <button id="settingsBtn" class="round-btn" aria-label="Cài đặt">⋯</button>
+      </header>
+      <div class="city-title"><small id="districtName">KHU KHỞI NGHIỆP</small><strong id="cityPrompt">Chọn một nơi để bắt đầu</strong></div>
+      <button id="jobsBtn" class="jobs-button"><span class="grid-icon"><i></i><i></i><i></i><i></i></span><b>60 NGHỀ</b></button>
+      <div class="city-bottom">
+        <button id="homeBtn" class="nav-pill active"><span class="home-icon"></span><b>Thành phố</b></button>
+        <button id="missionsBtn" class="nav-pill"><span class="star-icon"></span><b>Nhiệm vụ</b><em id="missionDot"></em></button>
+        <button id="phoneBtn" class="nav-pill"><span class="phone-icon"></span><b>Điện thoại</b><em id="phoneDot"></em></button>
+      </div>
+      <div id="citySheet" class="sheet hidden"></div>
+      <div id="toast" class="toast hidden"></div>
+    </section>
 
-    <nav class="dock glass">
-      <button class="active" data-panel="map"><span>🗺️</span><small>Thành phố</small></button>
-      <button data-panel="jobs"><span>💼</span><small>60 nghề</small></button>
-      <button data-panel="collection"><span>🏆</span><small>Bộ sưu tập</small></button>
-      <button data-panel="phone"><span>📱</span><small>Điện thoại</small><i id="phoneDot"></i></button>
-    </nav>
-
-    <button class="event-pill" id="eventPill"><span>🎁</span><b>Quà đường phố</b><small id="giftTimer">00:45</small></button>
-
-    <aside id="panel" class="panel glass hidden"></aside>
-    <div id="toastLayer" class="toast-layer"></div>
-  </main>
-
-  <section id="careerGame" class="career-game hidden">
-    <div class="career-bg"></div>
-    <header class="career-head glass">
-      <button id="exitCareer" class="back-btn">← Thành phố</button>
-      <div class="career-title"><span id="careerIcon">☕</span><div><small id="careerCategory">DỊCH VỤ</small><b id="careerName">Quán cà phê</b></div></div>
-      <div class="career-run"><span>⏱ <b id="careerTime">60</b>s</span><span>💰 <b id="careerEarn">0</b>đ</span><span>🔥 <b id="careerCombo">x1</b></span></div>
-    </header>
-    <div class="career-stage" id="careerStage"></div>
-    <div class="career-bottom glass">
-      <div><small>MỤC TIÊU</small><b id="careerGoal">Phục vụ khách thật nhanh</b></div>
-      <div class="run-progress"><div id="runProgress"></div></div>
-      <button id="careerAction" class="primary">BẮT ĐẦU CA LÀM</button>
-    </div>
-  </section>
-
-  <div id="resultModal" class="modal hidden"><div class="modal-card glass" id="resultCard"></div></div>
+    <section id="career" class="screen career hidden">
+      <div id="careerRoom" class="career-room">
+        <div class="room-back"><div class="wall-decor" id="wallDecor"></div></div>
+        <div class="room-floor"></div>
+        <div id="roomProps" class="room-props"></div>
+        <div id="roomPeople" class="room-people"></div>
+        <div id="workArea" class="work-area"></div>
+      </div>
+      <header class="career-topbar">
+        <button id="backCity" class="back">←</button>
+        <div class="career-id"><div id="careerBadge" class="career-badge"></div><span><small id="careerSector">NGHỀ</small><b id="careerTitle">Quán trà sữa</b></span></div>
+        <div class="shift-stats"><span><small>CA LÀM</small><b id="shiftTime">01:30</b></span><span><small>THU NHẬP</small><b id="shiftEarn">0đ</b></span><span><small>COMBO</small><b id="combo">x1</b></span></div>
+      </header>
+      <aside id="orderBubble" class="order-bubble hidden"></aside>
+      <div id="careerHud" class="career-hud">
+        <div class="task"><small>NHIỆM VỤ HIỆN TẠI</small><b id="taskText">Phục vụ vị khách đầu tiên</b><div class="task-progress"><i id="taskProgress"></i></div></div>
+        <button id="startShift" class="start-shift">BẮT ĐẦU CA LÀM</button>
+      </div>
+      <div id="careerResult" class="result-overlay hidden"></div>
+    </section>
+  </div>
   <script type="module" src="./game.js"></script>
 </body>
 </html>
