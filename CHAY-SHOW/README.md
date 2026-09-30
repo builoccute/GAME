@@ -1,36 +1,17 @@
-# CHẠY SHOW — V1.0
+# CHẠY SHOW V1.0.1
 
-Game mô phỏng tổ chức sự kiện chạy trên React/Vite + Cloudflare Workers.
+Bản sửa lỗi màn hình trắng cho Cloudflare Workers Static Assets.
 
-## Cloudflare bindings
-- D1: `DB` → database `game` (`5d0864fc-4a20-447e-9b6a-4d27667e66e9`)
-- R2: `ASSETS` → bucket `game`
-- Static assets: `STATIC` → `./dist`
+## Cloudflare build
+- Root directory: `CHAY-SHOW`
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
 
-## Deploy lần đầu
-```bash
-npm install
-npm run build
-npx wrangler d1 migrations apply DB --remote
-npx wrangler deploy
-```
+## Bindings
+- D1: `DB` -> database `game` -> `5d0864fc-4a20-447e-9b6a-4d27667e66e9`
+- R2: `ASSETS` -> bucket `game`
 
-Các lần deploy sau:
-```bash
-npm run deploy
-```
+## D1 lần đầu
+`npx wrangler d1 migrations apply DB --remote`
 
-## V1 có sẵn
-- 5 loại sự kiện
-- 100 sự cố ngẫu nhiên
-- 25 nhân sự
-- 20 nhà cung cấp
-- quản lý ngân sách / khách / uy tín / truyền thông / team / đối tác / stress
-- Inbox giả lập
-- nhật ký quyết định
-- autosave LocalStorage
-- D1 leaderboard + cloud-save API
-- R2 media endpoint `/media/*`
-- responsive desktop/mobile
-
-Không cần secret để chạy V1.
+Bản này không dùng React/Vite ở runtime và build không cần dependency frontend. `npm run build` chỉ tạo `dist/` từ source tĩnh, giảm rủi ro trang trắng do bundle/runtime.

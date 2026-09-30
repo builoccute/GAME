@@ -1,21 +1,11 @@
 {
   "name": "chay-show-game",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy",
-    "db:migrate": "wrangler d1 migrations apply DB --remote"
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "wrangler": "latest"
-  },
-  "devDependencies": {}
+    "build": "node scripts/build.mjs",
+    "deploy": "npm run build && npx wrangler deploy",
+    "db:migrate": "npx wrangler d1 migrations apply DB --remote"
+  }
 }
